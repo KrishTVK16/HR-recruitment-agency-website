@@ -325,16 +325,21 @@ if (registerForm) {
         const emailInput = document.getElementById('registerEmail');
         const passwordInput = document.getElementById('registerPassword');
         const confirmInput = document.getElementById('registerConfirmPassword');
+        const termsCheckbox = document.getElementById('registerTerms');
         const nameError = document.getElementById('registerNameError');
         const emailError = document.getElementById('registerEmailError');
         const passwordError = document.getElementById('registerPasswordError');
         const confirmError = document.getElementById('registerConfirmPasswordError');
+        const termsError = document.getElementById('registerTermsError');
         const formMessage = document.getElementById('registerFormMessage');
 
         nameError.textContent = '';
         emailError.textContent = '';
         passwordError.textContent = '';
         confirmError.textContent = '';
+        if (termsError) {
+            termsError.textContent = '';
+        }
         formMessage.textContent = '';
         formMessage.className = 'form-message';
 
@@ -370,6 +375,13 @@ if (registerForm) {
             isValid = false;
         } else if (confirmInput.value.trim() !== passwordInput.value.trim()) {
             confirmError.textContent = 'Passwords do not match';
+            isValid = false;
+        }
+
+        if (termsCheckbox && !termsCheckbox.checked) {
+            if (termsError) {
+                termsError.textContent = 'You must agree to the Terms and Conditions';
+            }
             isValid = false;
         }
 
