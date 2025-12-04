@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact HR Recruit - Get in touch with our team">
-    <title>Contact Us | HR Recruitment Agency</title>
+    <meta name="description" content="HR Recruit - Alternative homepage layout for HR recruitment agency">
+    <title>HR Recruit | Talent Solutions</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation (same structure for consistency) -->
     <header class="header">
         <nav class="navbar" role="navigation" aria-label="Main navigation">
             <div class="nav-container">
@@ -30,12 +30,12 @@
                             <button type="button" class="home-dropdown-label">Home ▾</button>
                             <ul class="home-dropdown-menu">
                                 <li><a href="index.html" class="nav-link">Classic</a></li>
-                                <li><a href="home-alt.html" class="nav-link">Modern</a></li>
+                                <li><a href="home-alt.html" class="nav-link active">Modern</a></li>
                             </ul>
                         </li>
                         <li><a href="services.html" class="nav-link">Services</a></li>
                         <li><a href="about.html" class="nav-link">About</a></li>
-                        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
                         <li class="nav-auth">
                             <a href="login.html" class="btn btn-outline-primary nav-auth-btn">Login</a>
                             <a href="register.html" class="btn btn-primary nav-auth-btn">Register</a>
@@ -55,80 +55,152 @@
         </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Get in touch with our team today.</p>
+    <!-- Alternative Hero (split layout) -->
+    <section class="hero-alt">
+        <div class="container hero-alt-grid">
+            <div class="hero-alt-text">
+                <h1>Build Stronger Teams, Faster.</h1>
+                <p>HR Recruit partners with growing organizations to design hiring strategies, attract top talent, and keep your teams engaged for the long term.</p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="btn btn-primary">View Talent Solutions</a>
+                    <a href="contact.html" class="btn btn-outline-primary">Talk to Our Team</a>
+                </div>
+                <div class="hero-alt-stats">
+                    <div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Roles Filled</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">30d</div>
+                        <div class="stat-label">Avg. Time-to-Hire</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Retention</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact">
+    <!-- Quick Talent Request Panel (separate from hero) -->
+    <section class="hero-alt-request">
         <div class="container">
-            <div class="contact-wrapper">
-                <form class="contact-form" id="contactForm" aria-label="Contact form">
+            <div class="hero-alt-panel">
+                <h2>Quick Talent Request</h2>
+                <p>Share what you’re hiring for and we’ll respond with a shortlist plan.</p>
+                <form class="hero-alt-form" aria-label="Quick talent request">
                     <div class="form-group">
-                        <label for="name">Name <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required aria-required="true">
-                        <span class="error-message" id="nameError"></span>
+                        <label for="roleTitle">Role Title</label>
+                        <input type="text" id="roleTitle" name="roleTitle" placeholder="e.g. Senior Java Developer">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required aria-required="true">
-                        <span class="error-message" id="emailError"></span>
+                        <label for="companySize">Company Size</label>
+                        <select id="companySize" name="companySize">
+                            <option value="">Select</option>
+                            <option value="1-50">1–50 employees</option>
+                            <option value="51-200">51–200 employees</option>
+                            <option value="201-1000">201–1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
-                        <span class="error-message" id="phoneError"></span>
+                        <label for="workType">Work Type</label>
+                        <select id="workType" name="workType">
+                            <option value="">Select</option>
+                            <option value="onsite">Onsite</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="remote">Remote</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
-                        <span class="error-message" id="messageError"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" id="spam-check" name="spam-check" style="display: none;" tabindex="-1" aria-hidden="true">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                    <div class="form-message" id="formMessage" role="alert"></div>
+                    <button type="button" class="btn btn-primary">Send Request (Demo)</button>
                 </form>
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Whether you're looking to fill a position, seeking HR consulting, or have questions about our services, we're here to help. Reach out to us through any of the following channels:</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <div>
-                                <strong>Phone</strong>
-                                <a href="tel:+919876543210" class="contact-link">+91 98765 43210</a>
-                            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Highlights (different layout from main home) -->
+    <section class="services-alt">
+        <div class="container">
+            <div class="section-header-alt">
+                <h2>End-to-End HR Support</h2>
+                <p>From first interview to final onboarding, we cover every stage of the talent journey.</p>
+            </div>
+            <div class="services-alt-grid">
+                <article class="service-card-alt">
+                    <h3>Talent Search</h3>
+                    <p>Targeted sourcing and screening for critical roles in tech, operations, and leadership.</p>
+                    <a href="service-recruitment.html" class="service-link">Explore recruitment →</a>
+                </article>
+                <article class="service-card-alt">
+                    <h3>HR Strategy</h3>
+                    <p>Policies, organization design, and people programs aligned with your growth goals.</p>
+                    <a href="service-hr-consulting.html" class="service-link">Consulting details →</a>
+                </article>
+                <article class="service-card-alt">
+                    <h3>People Analytics</h3>
+                    <p>Data-driven insights on turnover, performance, and engagement.</p>
+                    <a href="service-hr-analytics.html" class="service-link">See analytics service →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple 3-step process -->
+    <section class="process-alt">
+        <div class="container">
+            <div class="section-header-alt">
+                <h2>How We Work With You</h2>
+                <p>A clear, collaborative process that keeps you informed at every step.</p>
+            </div>
+            <div class="process-alt-grid">
+                <div class="process-alt-card">
+                    <span class="process-alt-step">1</span>
+                    <h3>Understand</h3>
+                    <p>We map your roles, culture, and timelines so we know exactly what “great talent” means for you.</p>
+                </div>
+                <div class="process-alt-card">
+                    <span class="process-alt-step">2</span>
+                    <h3>Search</h3>
+                    <p>Our team sources, screens, and presents only the candidates who truly match your criteria.</p>
+                </div>
+                <div class="process-alt-card">
+                    <span class="process-alt-step">3</span>
+                    <h3>Support</h3>
+                    <p>We coordinate interviews, offers, and onboarding to make every hire a smooth experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alternate testimonials strip -->
+    <section class="testimonials-alt">
+        <div class="container">
+            <div class="section-header-alt">
+                <h2>Leaders Who Trust HR Recruit</h2>
+            </div>
+            <div class="testimonials-alt-row">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"We scaled from 20 to 120 employees in under a year. HR Recruit kept quality high and our hiring experience smooth."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <div class="author-name">Anita Kapoor</div>
+                            <div class="author-title">Founder, GrowthLabs</div>
                         </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">✉️</span>
-                            <div>
-                                <strong>Email</strong>
-                                <a href="mailto:info@hrrecruit.com" class="contact-link">info@hrrecruit.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <div>
-                                <strong>Address</strong>
-                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="contact-link">123 Business Street, City, State 12345</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">🕒</span>
-                            <div>
-                                <strong>Business Hours</strong>
-                                <p class="contact-link" style="margin: 0;">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
-                            </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Their understanding of both tech and HR helped us hire specialists we struggled to find on our own."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">VS</div>
+                        <div class="author-info">
+                            <div class="author-name">Vikram Shah</div>
+                            <div class="author-title">CTO, FinEdge</div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +208,19 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Compact CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Need to Hire in the Next 30 Days?</h2>
+            <p>Share your priority roles and we’ll propose a clear hiring plan.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Share Your Roles</a>
+                <a href="services.html" class="btn btn-outline-primary">Browse Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as other pages) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -154,7 +238,7 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="home-alt.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -204,3 +288,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+

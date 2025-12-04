@@ -25,10 +25,20 @@
                 </a>
                 <div class="header-actions">
                     <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="home-dropdown">
+                            <button type="button" class="home-dropdown-label">Home ▾</button>
+                            <ul class="home-dropdown-menu">
+                                <li><a href="index.html" class="nav-link">Classic</a></li>
+                                <li><a href="home-alt.html" class="nav-link">Modern</a></li>
+                            </ul>
+                        </li>
                         <li><a href="services.html" class="nav-link active">Services</a></li>
                         <li><a href="about.html" class="nav-link">About</a></li>
                         <li><a href="contact.html" class="nav-link">Contact</a></li>
+                        <li class="nav-auth">
+                            <a href="login.html" class="btn btn-outline-primary nav-auth-btn">Login</a>
+                            <a href="register.html" class="btn btn-primary nav-auth-btn">Register</a>
+                        </li>
                     </ul>
                     <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
                         <span class="theme-toggle-icon">☀️</span>

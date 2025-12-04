@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for an HR Recruit account">
+    <title>Register | HR Recruit</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card" aria-labelledby="registerTitle">
+            <div class="auth-card-logo">
+                <a href="index.html" class="logo" aria-label="Back to homepage">
+                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#2563eb"/>
+                        <path d="M20 12L15 17H18V25H22V17H25L20 12Z" fill="white"/>
+                        <path d="M12 28H28V30H12V28Z" fill="white"/>
+                    </svg>
+                    <span class="logo-text">HR Recruit</span>
+                </a>
+            </div>
+
+            <h1 id="registerTitle">Create Account</h1>
+
+            <form class="auth-form" id="registerForm" novalidate>
+                <div class="form-group">
+                    <label for="registerName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="registerName" name="name" autocomplete="name" required>
+                    <span class="error-message" id="registerNameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="registerEmail" name="email" autocomplete="email" required>
+                    <span class="error-message" id="registerEmailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password <span class="required">*</span></label>
+                    <input type="password" id="registerPassword" name="password" autocomplete="new-password" required>
+                    <span class="error-message" id="registerPasswordError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password <span class="required">*</span></label>
+                    <input type="password" id="registerConfirmPassword" name="confirmPassword" autocomplete="new-password" required>
+                    <span class="error-message" id="registerConfirmPasswordError"></span>
+                </div>
+
+                <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+
+                <div class="auth-meta">
+                    Already have an account? <a href="login.html">Login instead</a>
+                </div>
+
+                <div class="form-message" id="registerFormMessage"></div>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

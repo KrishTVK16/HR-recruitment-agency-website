@@ -244,3 +244,140 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Home dropdown toggle (for two home layouts)
+document.querySelectorAll('.home-dropdown-label').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parent = button.closest('.home-dropdown');
+        const isOpen = parent.classList.contains('open');
+
+        // Close any other open home dropdowns
+        document.querySelectorAll('.home-dropdown.open').forEach(item => {
+            if (item !== parent) {
+                item.classList.remove('open');
+            }
+        });
+
+        if (!isOpen) {
+            parent.classList.add('open');
+        } else {
+            parent.classList.remove('open');
+        }
+    });
+});
+
+// Close home dropdown when clicking outside
+document.addEventListener('click', () => {
+    document.querySelectorAll('.home-dropdown.open').forEach(item => {
+        item.classList.remove('open');
+    });
+});
+
+// Simple front-end validation for login and register forms
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const emailInput = document.getElementById('loginEmail');
+        const passwordInput = document.getElementById('loginPassword');
+        const emailError = document.getElementById('loginEmailError');
+        const passwordError = document.getElementById('loginPasswordError');
+        const formMessage = document.getElementById('loginFormMessage');
+
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        formMessage.textContent = '';
+        formMessage.className = 'form-message';
+
+        let isValid = true;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailInput.value.trim()) {
+            emailError.textContent = 'Email is required';
+            isValid = false;
+        } else if (!emailRegex.test(emailInput.value.trim())) {
+            emailError.textContent = 'Enter a valid email address';
+            isValid = false;
+        }
+
+        if (!passwordInput.value.trim()) {
+            passwordError.textContent = 'Password is required';
+            isValid = false;
+        } else if (passwordInput.value.trim().length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters';
+            isValid = false;
+        }
+
+        if (isValid) {
+            formMessage.textContent = 'Login successful (demo only).';
+            formMessage.className = 'form-message success';
+        }
+    });
+}
+
+const registerForm = document.getElementById('registerForm');
+if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('registerName');
+        const emailInput = document.getElementById('registerEmail');
+        const passwordInput = document.getElementById('registerPassword');
+        const confirmInput = document.getElementById('registerConfirmPassword');
+        const nameError = document.getElementById('registerNameError');
+        const emailError = document.getElementById('registerEmailError');
+        const passwordError = document.getElementById('registerPasswordError');
+        const confirmError = document.getElementById('registerConfirmPasswordError');
+        const formMessage = document.getElementById('registerFormMessage');
+
+        nameError.textContent = '';
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        confirmError.textContent = '';
+        formMessage.textContent = '';
+        formMessage.className = 'form-message';
+
+        let isValid = true;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!nameInput.value.trim()) {
+            nameError.textContent = 'Full name is required';
+            isValid = false;
+        } else if (nameInput.value.trim().length < 2) {
+            nameError.textContent = 'Name must be at least 2 characters';
+            isValid = false;
+        }
+
+        if (!emailInput.value.trim()) {
+            emailError.textContent = 'Email is required';
+            isValid = false;
+        } else if (!emailRegex.test(emailInput.value.trim())) {
+            emailError.textContent = 'Enter a valid email address';
+            isValid = false;
+        }
+
+        if (!passwordInput.value.trim()) {
+            passwordError.textContent = 'Password is required';
+            isValid = false;
+        } else if (passwordInput.value.trim().length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters';
+            isValid = false;
+        }
+
+        if (!confirmInput.value.trim()) {
+            confirmError.textContent = 'Please confirm your password';
+            isValid = false;
+        } else if (confirmInput.value.trim() !== passwordInput.value.trim()) {
+            confirmError.textContent = 'Passwords do not match';
+            isValid = false;
+        }
+
+        if (isValid) {
+            formMessage.textContent = 'Account created successfully (demo only).';
+            formMessage.className = 'form-message success';
+            registerForm.reset();
+        }
+    });
+}
+
