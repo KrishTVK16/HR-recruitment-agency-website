@@ -400,7 +400,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
-                top: offsetPosition,
+                top: 0,
                 behavior: 'smooth'
             });
         }
@@ -413,10 +413,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const backToTopBtn = document.querySelector('.back-to-top');
 if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+         // 1. Prevent flicker by disabling transitions temporarily
+    header.classList.add('freeze-header');
+
+    // 2. Freeze header position during scroll
+    header.style.position = 'fixed';
+
+    // 3. Perform smooth scroll
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+    // 4. Restore everything after animation
+    setTimeout(() => {
+        header.style.position = '';
+        header.classList.remove('freeze-header'); // remove flicker protection
+    }, 100);
     });
 }
 

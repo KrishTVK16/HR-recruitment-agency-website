@@ -3329,3 +3329,21 @@ textarea:focus {
     white-space: nowrap;
     border: 0;
 }
+.freeze-header,
+.freeze-header * {
+    transition: none !important;
+    animation: none !important;
+}
+.process-alt-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centers the pair horizontally */
+    gap: 0.75rem; /* spacing between number and heading */
+    margin-bottom: 1rem;
+}
+
+.process-alt-header h3,
+.process-alt-header .process-alt-step {
+    margin: 0; /* remove unwanted spacing */
+    padding: 0;
+}
