@@ -190,6 +190,13 @@ navLinks.forEach(link => {
 // ========================================
 // SCROLL ANIMATIONS
 // ========================================
+// Ensure every section participates in cinematic reveal except heroes (keep hero headers static)
+document.querySelectorAll('section:not(.hero):not(.hero-alt)').forEach((section) => {
+    if (!section.classList.contains('scroll-animate')) {
+        section.classList.add('scroll-animate');
+    }
+});
+
 const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
 
 const observerOptions = {
@@ -208,6 +215,11 @@ const scrollObserver = new IntersectionObserver((entries) => {
 
 scrollAnimateElements.forEach(el => {
     scrollObserver.observe(el);
+});
+
+// Ensure above-the-fold hero sections stay visible (no reveal effects)
+document.querySelectorAll('.hero, .hero-alt').forEach(el => {
+    el.classList.add('visible');
 });
 
 // ========================================
@@ -628,41 +640,6 @@ window.addEventListener('scroll', () => {
     
     lastScroll = currentScroll;
 });
-
-// ========================================
-// TYPEWRITER EFFECT
-// ========================================
-function initTypewriterEffect() {
-    const targets = document.querySelectorAll('[data-typewriter]');
-    targets.forEach(el => {
-        const fullText = el.getAttribute('data-typewriter') || el.textContent;
-        el.textContent = '';
-
-        const caret = document.createElement('span');
-        caret.className = 'typewriter-caret';
-        caret.textContent = '|';
-        el.appendChild(caret);
-
-        let index = 0;
-        const typeSpeed = 40;
-
-        const typeNext = () => {
-            if (index < fullText.length) {
-                const char = document.createTextNode(fullText.charAt(index));
-                el.insertBefore(char, caret);
-                index += 1;
-                setTimeout(typeNext, typeSpeed);
-            } else {
-                caret.classList.add('done');
-            }
-        };
-
-        // Small delay so fade-in can start
-        setTimeout(typeNext, 200);
-    });
-}
-
-initTypewriterEffect();
 
 // ========================================
 // FLOATING PARTICLES (hero sections)

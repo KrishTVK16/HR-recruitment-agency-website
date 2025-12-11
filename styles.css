@@ -697,6 +697,20 @@ body.menu-open {
     animation: heroGlow 12s ease-in-out infinite;
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background:
+        linear-gradient(135deg, rgba(91, 192, 235, 0.22) 0%, rgba(219, 234, 254, 0.18) 50%, rgba(91, 192, 235, 0.22) 100%),
+        repeating-linear-gradient(120deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 2px, transparent 6px);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    filter: blur(0.2px);
+    animation: sheenSweep 16s ease-in-out infinite;
+    z-index: 1;
+}
+
 .hero .hero-container {
     position: relative;
     z-index: 2;
@@ -2376,13 +2390,27 @@ body.dark-mode .footer {
 /* Scroll animations */
 .scroll-animate {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(40px);
+    filter: blur(6px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .scroll-animate.visible {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Slide-in variants for smoother luxury motion */
+.slide-in-left {
+    transform: translateX(-40px);
+}
+.slide-in-right {
+    transform: translateX(40px);
+}
+.slide-in-left.visible,
+.slide-in-right.visible {
+    transform: translateX(0);
 }
 
 /* ========================================
@@ -2885,9 +2913,39 @@ body.dark-mode .wave-separator .shape-fill {
     animation: heroGlow 14s ease-in-out infinite;
 }
 
+.hero-alt::after {
+    content: '';
+    position: absolute;
+    inset: -12%;
+    background:
+        linear-gradient(135deg, rgba(91, 192, 235, 0.2) 0%, rgba(219, 234, 254, 0.16) 60%, rgba(91, 192, 235, 0.2) 100%),
+        repeating-linear-gradient(125deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 2px, transparent 6px);
+    mix-blend-mode: screen;
+    opacity: 0.3;
+    filter: blur(0.2px);
+    animation: sheenSweep 18s ease-in-out infinite;
+    z-index: 1;
+}
+
 .hero-alt .hero-alt-grid {
     position: relative;
     z-index: 2;
+}
+
+/* Fade-in text reveal (luxury, minimal) */
+.text-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: textReveal 0.9s ease forwards;
+}
+
+.text-reveal[data-delay="1"] { animation-delay: 0.12s; }
+.text-reveal[data-delay="2"] { animation-delay: 0.24s; }
+.text-reveal[data-delay="3"] { animation-delay: 0.36s; }
+
+@keyframes textReveal {
+    0% { opacity: 0; transform: translateY(18px); filter: blur(2px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 /* Particle layer for hero sections */
@@ -2914,19 +2972,7 @@ body.dark-mode .wave-separator .shape-fill {
     100% { transform: translate3d(-10px, -32px, 0); opacity: 0.65; }
 }
 
-/* Hero fade-in stacks */
-.hero .hero-container > * {
-    animation: fadeInUp 0.9s ease both;
-}
-.hero .hero-container h1 { animation-delay: 0s; }
-.hero .hero-container .hero-subtitle { animation-delay: 0.15s; }
-.hero .hero-container .hero-buttons { animation-delay: 0.3s; }
-
-.hero-alt .hero-alt-text h1 { animation-delay: 0s; }
-.hero-alt .hero-alt-text p { animation-delay: 0.15s; }
-.hero-alt .hero-buttons { animation-delay: 0.3s; }
-.hero-alt-stats { animation: fadeInUp 0.9s ease 0.45s both; }
-.hero-alt-panel { animation: fadeInUp 0.9s ease 0.6s both; }
+/* Hero content stays static (glow/hover only; no entry animations) */
 
 /* ========================================
    ADDITIONAL VISUAL EFFECTS (From Prompt)
@@ -2939,31 +2985,16 @@ body.dark-mode .wave-separator .shape-fill {
     transition: text-shadow var(--transition-base);
 }
 
-/* Typewriter caret */
-.typewriter-caret {
-    display: inline-block;
-    margin-left: 2px;
-    animation: caretBlink 1s steps(1) infinite;
-    color: var(--primary-color);
-}
-
-.typewriter-caret.done {
-    animation: caretFade 0.6s ease forwards;
-}
-
-@keyframes caretBlink {
-    0%, 50% { opacity: 1; }
-    50.01%, 100% { opacity: 0; }
-}
-
-@keyframes caretFade {
-    to { opacity: 0; }
-}
-
 @keyframes heroGlow {
     0% { filter: hue-rotate(0deg); }
     50% { filter: hue-rotate(8deg) brightness(1.03); }
     100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes sheenSweep {
+    0% { transform: translateX(-10%) translateY(-4%) rotate(0.5deg); opacity: 0.25; }
+    50% { transform: translateX(6%) translateY(3%) rotate(-0.5deg); opacity: 0.4; }
+    100% { transform: translateX(-10%) translateY(-4%) rotate(0.5deg); opacity: 0.25; }
 }
 
 /* Staggered Card Animations */
@@ -3169,7 +3200,7 @@ h2:hover {
 
 /* Button Gradient Animation */
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, #5BC0EB 0%, #93c5fd 45%, #0ea5e9 100%);
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
 }
