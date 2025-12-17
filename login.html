@@ -26,19 +26,17 @@
                 </a>
             </div>
 
-            <h1 id="loginTitle">Login</h1>
+            <h1 id="loginTitle">Welcome Back!</h1>
 
             <form class="auth-form" id="loginForm" novalidate>
                 <div class="form-group">
                     <label for="loginEmail">Email <span class="required">*</span></label>
                     <input type="email" id="loginEmail" name="email" autocomplete="email" required>
-                    <span class="error-message" id="loginEmailError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="loginPassword">Password <span class="required">*</span></label>
                     <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
-                    <span class="error-message" id="loginPasswordError"></span>
                 </div>
 
                 <div class="form-row-inline">
@@ -64,11 +62,16 @@
                 <div class="auth-meta">
                     New here? <a href="register.html">Create an account</a>
                 </div>
-
-                <div class="form-message" id="loginFormMessage"></div>
             </form>
         </section>
     </main>
+
+    <!-- Notification Popup -->
+    <div class="notification-overlay" id="notificationOverlay"></div>
+    <div class="notification-popup" id="notificationPopup">
+        <span class="notification-icon" id="notificationIcon"></span>
+        <p class="notification-message" id="notificationMessage"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>

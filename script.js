@@ -465,6 +465,53 @@ document.addEventListener('click', () => {
 });
 
 // ========================================
+// NOTIFICATION POPUP SYSTEM
+// ========================================
+function showNotification(message, type = 'error') {
+    const popup = document.getElementById('notificationPopup');
+    const overlay = document.getElementById('notificationOverlay');
+    const icon = document.getElementById('notificationIcon');
+    const messageEl = document.getElementById('notificationMessage');
+
+    if (!popup || !overlay || !icon || !messageEl) return;
+
+    // Set message
+    messageEl.textContent = message;
+
+    // Set icon based on type
+    const icons = {
+        error: '❌',
+        success: '✅',
+        info: 'ℹ️'
+    };
+    icon.textContent = icons[type] || icons.error;
+
+    // Remove all type classes and add the correct one
+    popup.classList.remove('error', 'success', 'info', 'show');
+    popup.classList.add(type, 'show');
+    overlay.classList.add('show');
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        hideNotification();
+    }, 3000);
+}
+
+function hideNotification() {
+    const popup = document.getElementById('notificationPopup');
+    const overlay = document.getElementById('notificationOverlay');
+
+    if (popup) popup.classList.remove('show');
+    if (overlay) overlay.classList.remove('show');
+}
+
+// Close notification when clicking overlay
+const notificationOverlay = document.getElementById('notificationOverlay');
+if (notificationOverlay) {
+    notificationOverlay.addEventListener('click', hideNotification);
+}
+
+// ========================================
 // LOGIN FORM VALIDATION
 // ========================================
 const loginForm = document.getElementById('loginForm');
@@ -474,37 +521,46 @@ if (loginForm) {
 
         const emailInput = document.getElementById('loginEmail');
         const passwordInput = document.getElementById('loginPassword');
-        const emailError = document.getElementById('loginEmailError');
-        const passwordError = document.getElementById('loginPasswordError');
-        const formMessage = document.getElementById('loginFormMessage');
-
-        emailError.textContent = '';
-        passwordError.textContent = '';
-        formMessage.textContent = '';
-        formMessage.className = 'form-message';
 
         let isValid = true;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let errorMessage = '';
 
         if (!emailInput.value.trim()) {
-            emailError.textContent = 'Email is required';
+            errorMessage = 'Email is required';
             isValid = false;
         } else if (!emailRegex.test(emailInput.value.trim())) {
-            emailError.textContent = 'Enter a valid email address';
+            errorMessage = 'Please enter a valid email address';
             isValid = false;
-        }
-
-        if (!passwordInput.value.trim()) {
-            passwordError.textContent = 'Password is required';
+        } else if (!passwordInput.value.trim()) {
+            errorMessage = 'Password is required';
             isValid = false;
         } else if (passwordInput.value.trim().length < 6) {
-            passwordError.textContent = 'Password must be at least 6 characters';
+            errorMessage = 'Password must be at least 6 characters';
             isValid = false;
         }
 
-        if (isValid) {
-            formMessage.textContent = 'Login successful (demo only).';
-            formMessage.className = 'form-message success';
+        if (!isValid) {
+            showNotification(errorMessage, 'error');
+            // Add error styling to inputs
+            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+                emailInput.style.borderColor = 'var(--error-color)';
+                setTimeout(() => {
+                    emailInput.style.borderColor = '';
+                }, 2000);
+            }
+            if (!passwordInput.value.trim() || passwordInput.value.trim().length < 6) {
+                passwordInput.style.borderColor = 'var(--error-color)';
+                setTimeout(() => {
+                    passwordInput.style.borderColor = '';
+                }, 2000);
+            }
+        } else {
+            showNotification('Login successful! Welcome back.', 'success');
+            // Reset form after a short delay
+            setTimeout(() => {
+                loginForm.reset();
+            }, 1000);
         }
     });
 }
@@ -522,69 +578,67 @@ if (registerForm) {
         const passwordInput = document.getElementById('registerPassword');
         const confirmInput = document.getElementById('registerConfirmPassword');
         const termsCheckbox = document.getElementById('registerTerms');
-        const nameError = document.getElementById('registerNameError');
-        const emailError = document.getElementById('registerEmailError');
-        const passwordError = document.getElementById('registerPasswordError');
-        const confirmError = document.getElementById('registerConfirmPasswordError');
-        const termsError = document.getElementById('registerTermsError');
-        const formMessage = document.getElementById('registerFormMessage');
-
-        nameError.textContent = '';
-        emailError.textContent = '';
-        passwordError.textContent = '';
-        confirmError.textContent = '';
-        if (termsError) {
-            termsError.textContent = '';
-        }
-        formMessage.textContent = '';
-        formMessage.className = 'form-message';
 
         let isValid = true;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let errorMessage = '';
+
+        // Reset input borders
+        [nameInput, emailInput, passwordInput, confirmInput].forEach(input => {
+            if (input) input.style.borderColor = '';
+        });
 
         if (!nameInput.value.trim()) {
-            nameError.textContent = 'Full name is required';
+            errorMessage = 'Full name is required';
             isValid = false;
+            nameInput.style.borderColor = 'var(--error-color)';
         } else if (nameInput.value.trim().length < 2) {
-            nameError.textContent = 'Name must be at least 2 characters';
+            errorMessage = 'Name must be at least 2 characters';
             isValid = false;
-        }
-
-        if (!emailInput.value.trim()) {
-            emailError.textContent = 'Email is required';
+            nameInput.style.borderColor = 'var(--error-color)';
+        } else if (!emailInput.value.trim()) {
+            errorMessage = 'Email is required';
             isValid = false;
+            emailInput.style.borderColor = 'var(--error-color)';
         } else if (!emailRegex.test(emailInput.value.trim())) {
-            emailError.textContent = 'Enter a valid email address';
+            errorMessage = 'Please enter a valid email address';
             isValid = false;
-        }
-
-        if (!passwordInput.value.trim()) {
-            passwordError.textContent = 'Password is required';
+            emailInput.style.borderColor = 'var(--error-color)';
+        } else if (!passwordInput.value.trim()) {
+            errorMessage = 'Password is required';
             isValid = false;
+            passwordInput.style.borderColor = 'var(--error-color)';
         } else if (passwordInput.value.trim().length < 6) {
-            passwordError.textContent = 'Password must be at least 6 characters';
+            errorMessage = 'Password must be at least 6 characters';
             isValid = false;
-        }
-
-        if (!confirmInput.value.trim()) {
-            confirmError.textContent = 'Please confirm your password';
+            passwordInput.style.borderColor = 'var(--error-color)';
+        } else if (!confirmInput.value.trim()) {
+            errorMessage = 'Please confirm your password';
             isValid = false;
+            confirmInput.style.borderColor = 'var(--error-color)';
         } else if (confirmInput.value.trim() !== passwordInput.value.trim()) {
-            confirmError.textContent = 'Passwords do not match';
+            errorMessage = 'Passwords do not match';
+            isValid = false;
+            confirmInput.style.borderColor = 'var(--error-color)';
+        } else if (termsCheckbox && !termsCheckbox.checked) {
+            errorMessage = 'You must agree to the Terms and Conditions';
             isValid = false;
         }
 
-        if (termsCheckbox && !termsCheckbox.checked) {
-            if (termsError) {
-                termsError.textContent = 'You must agree to the Terms and Conditions';
-            }
-            isValid = false;
-        }
-
-        if (isValid) {
-            formMessage.textContent = 'Account created successfully (demo only).';
-            formMessage.className = 'form-message success';
-            registerForm.reset();
+        if (!isValid) {
+            showNotification(errorMessage, 'error');
+            // Reset border colors after 2 seconds
+            setTimeout(() => {
+                [nameInput, emailInput, passwordInput, confirmInput].forEach(input => {
+                    if (input) input.style.borderColor = '';
+                });
+            }, 2000);
+        } else {
+            showNotification('Account created successfully! Welcome to HR Recruit.', 'success');
+            // Reset form after a short delay
+            setTimeout(() => {
+                registerForm.reset();
+            }, 1000);
         }
     });
 }

@@ -26,31 +26,27 @@
                 </a>
             </div>
 
-            <h1 id="registerTitle">Create Account</h1>
+            <h1 id="registerTitle">Join Us Today!</h1>
 
             <form class="auth-form" id="registerForm" novalidate>
                 <div class="form-group">
                     <label for="registerName">Full Name <span class="required">*</span></label>
                     <input type="text" id="registerName" name="name" autocomplete="name" required>
-                    <span class="error-message" id="registerNameError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="registerEmail">Email <span class="required">*</span></label>
                     <input type="email" id="registerEmail" name="email" autocomplete="email" required>
-                    <span class="error-message" id="registerEmailError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="registerPassword">Password <span class="required">*</span></label>
                     <input type="password" id="registerPassword" name="password" autocomplete="new-password" required>
-                    <span class="error-message" id="registerPasswordError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="registerConfirmPassword">Confirm Password <span class="required">*</span></label>
                     <input type="password" id="registerConfirmPassword" name="confirmPassword" autocomplete="new-password" required>
-                    <span class="error-message" id="registerConfirmPasswordError"></span>
                 </div>
 
                 <div class="form-group form-group-inline">
@@ -58,7 +54,6 @@
                         <input type="checkbox" id="registerTerms" name="terms">
                         <span>I agree to the Terms and Conditions</span>
                     </label>
-                    <span class="error-message" id="registerTermsError"></span>
                 </div>
 
                 <div class="auth-actions">
@@ -76,11 +71,16 @@
                 <div class="auth-meta">
                     Already have an account? <a href="login.html">Login</a>
                 </div>
-
-                <div class="form-message" id="registerFormMessage"></div>
             </form>
         </section>
     </main>
+
+    <!-- Notification Popup -->
+    <div class="notification-overlay" id="notificationOverlay"></div>
+    <div class="notification-popup" id="notificationPopup">
+        <span class="notification-icon" id="notificationIcon"></span>
+        <p class="notification-message" id="notificationMessage"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
