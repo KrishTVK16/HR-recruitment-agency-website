@@ -791,7 +791,7 @@ body.menu-open {
    ======================================== */
 
 .hero-alt {
-    padding: 5rem 0 4.5rem;
+    padding: 6rem 0;
     background:
         radial-gradient(120% 120% at -10% 20%, rgba(249, 115, 22, 0.14), transparent 50%),
         radial-gradient(90% 90% at 110% -20%, rgba(94, 234, 212, 0.18), transparent 45%),
@@ -801,50 +801,18 @@ body.menu-open {
     overflow: hidden;
 }
 
-.hero-alt::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    left: -35%;
-    width: 60vw;
-    max-width: 620px;
-    aspect-ratio: 1 / 1;
-    background: radial-gradient(circle, rgba(249, 115, 22, 0.18) 0%, transparent 65%);
-    filter: blur(20px);
-    animation: blobFloat 12s ease-in-out infinite;
-    z-index: 0;
-}
-
-.hero-alt::after {
-    content: '';
-    position: absolute;
-    top: -25%;
-    right: -25%;
-    width: 55vw;
-    max-width: 540px;
-    aspect-ratio: 1 / 1;
-    background: radial-gradient(circle, rgba(94, 234, 212, 0.2) 0%, transparent 65%);
-    filter: blur(18px);
-    animation: blobFloatReverse 14s ease-in-out infinite;
-    z-index: 0;
-}
-
-.hero-alt-request {
-    margin-top: 10px;
-}
 
 .hero-alt-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
     position: relative;
     z-index: 1;
+    padding: 3rem 0;
 }
 
 .hero-alt-text {
-    max-width: 720px;
-    margin: 0 auto;
     text-align: center;
 }
 
@@ -853,20 +821,17 @@ body.menu-open {
     line-height: 1.2;
     margin-bottom: 1.25rem;
     color: #ffffff;
-    animation: fadeInUp 0.9s ease;
 }
 
 .hero-alt-text p {
     font-size: 1.15rem;
     color: rgba(241, 245, 249, 0.9);
     margin-bottom: 2rem;
-    animation: fadeInUp 0.9s ease 0.15s both;
 }
 
 .hero-alt .hero-buttons {
     justify-content: center;
     gap: 1rem;
-    animation: fadeInUp 0.9s ease 0.3s both;
 }
 
 .hero-alt .hero-buttons .btn-primary {
@@ -937,18 +902,16 @@ body.menu-open {
     background-color: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(20px);
     border-radius: var(--border-radius-lg);
-    padding: 2rem;
+    padding: 2.5rem;
     box-shadow: var(--shadow-lg);
     border: 1px solid rgba(91, 192, 235, 0.2);
-    max-width: 520px;
-    margin: 0 auto;
-    animation: fadeInUp 0.9s ease 0.45s both;
 }
 
 .hero-alt-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
 }
 
 .hero-alt-form .btn {
@@ -956,23 +919,31 @@ body.menu-open {
 }
 
 .hero-alt-panel h2 {
-    text-align: left;
+    text-align: center;
     color: #ffffff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-size: 1.5rem;
 }
 
 .hero-alt-panel p {
     margin-bottom: 1.5rem;
     color: rgba(226, 232, 240, 0.9);
+    text-align: center;
 }
 
 .hero-alt-form .form-group {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .hero-alt-form .form-group label {
     color: #e5e7eb;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
 .hero-alt-form .form-group input,
@@ -981,6 +952,8 @@ body.menu-open {
     border-color: rgba(91, 192, 235, 0.3);
     color: #e5e7eb;
     transition: var(--transition-base);
+    width: 100%;
+    text-align: center;
 }
 
 .hero-alt-form .form-group input:focus,
@@ -2723,6 +2696,24 @@ body.dark-mode .footer {
         gap: 0.75rem;
     }
 
+    .hero-alt-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .hero-alt-text {
+        text-align: center;
+    }
+
+    .hero-alt .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-alt-panel {
+        max-width: 100%;
+    }
+
     .hero-alt-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -2777,6 +2768,19 @@ body.dark-mode .footer {
 
     .hero {
         padding: 4rem 0;
+    }
+
+    .hero-alt {
+        padding: 4rem 0;
+    }
+
+    .hero-alt-grid {
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+    }
+
+    .hero-alt-panel {
+        padding: 2rem;
     }
 
     .hero h1 {
@@ -2907,11 +2911,7 @@ body.dark-mode .wave-separator .shape-fill {
     padding-bottom: 8rem;
 }
 
-.hero-alt {
-    position: relative;
-    padding-bottom: 6rem;
-    animation: heroGlow 14s ease-in-out infinite;
-}
+/* Removed duplicate .hero-alt definition - padding already set above */
 
 .hero-alt::after {
     content: '';
@@ -2923,7 +2923,6 @@ body.dark-mode .wave-separator .shape-fill {
     mix-blend-mode: screen;
     opacity: 0.3;
     filter: blur(0.2px);
-    animation: sheenSweep 18s ease-in-out infinite;
     z-index: 1;
 }
 
@@ -2948,29 +2947,6 @@ body.dark-mode .wave-separator .shape-fill {
     100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Particle layer for hero sections */
-.particle-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(91, 192, 235, 0.2);
-    box-shadow: 0 0 20px rgba(91, 192, 235, 0.25);
-    animation: floatParticle linear infinite;
-    filter: blur(0.25px);
-}
-
-@keyframes floatParticle {
-    0% { transform: translate3d(0, 0, 0); opacity: 0.65; }
-    50% { transform: translate3d(12px, -18px, 0); opacity: 0.9; }
-    100% { transform: translate3d(-10px, -32px, 0); opacity: 0.65; }
-}
 
 /* Hero content stays static (glow/hover only; no entry animations) */
 

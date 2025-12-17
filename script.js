@@ -655,32 +655,6 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
-// FLOATING PARTICLES (hero sections)
-// ========================================
-function createParticles(selector, count = 18) {
-    const host = document.querySelector(selector);
-    if (!host) return;
-
-    const layer = document.createElement('div');
-    layer.className = 'particle-layer';
-
-    for (let i = 0; i < count; i += 1) {
-        const p = document.createElement('span');
-        p.className = 'particle';
-        const size = Math.random() * 6 + 4; // 4px - 10px
-        p.style.width = `${size}px`;
-        p.style.height = `${size}px`;
-        p.style.left = `${Math.random() * 100}%`;
-        p.style.top = `${Math.random() * 100}%`;
-        p.style.animationDuration = `${14 + Math.random() * 8}s`;
-        p.style.animationDelay = `${-Math.random() * 10}s`;
-        layer.appendChild(p);
-    }
-
-    host.appendChild(layer);
-}
-
-// ========================================
 // INITIALIZE ON PAGE LOAD
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -692,8 +666,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.feature-card, .service-card, .testimonial-card, .stat-item').forEach((el, index) => {
         el.style.animationDelay = `${index * 0.1}s`;
     });
-
-    // Particles for hero sections
-    createParticles('.hero', 18);
-    createParticles('.hero-alt', 14);
 });
