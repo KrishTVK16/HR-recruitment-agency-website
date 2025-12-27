@@ -16,18 +16,15 @@ if (themeToggle) {
         document.body.classList.add('dark-mode');
         themeToggle.setAttribute('aria-pressed', 'true');
         themeToggle.querySelector('.theme-toggle-icon').textContent = '🌙';
-        themeToggle.querySelector('.theme-toggle-label').textContent = 'Dark';
     } else {
         themeToggle.setAttribute('aria-pressed', 'false');
         themeToggle.querySelector('.theme-toggle-icon').textContent = '☀️';
-        themeToggle.querySelector('.theme-toggle-label').textContent = 'Light';
     }
 
     themeToggle.addEventListener('click', () => {
         const isDark = document.body.classList.toggle('dark-mode');
         themeToggle.setAttribute('aria-pressed', String(isDark));
         themeToggle.querySelector('.theme-toggle-icon').textContent = isDark ? '🌙' : '☀️';
-        themeToggle.querySelector('.theme-toggle-label').textContent = isDark ? 'Dark' : 'Light';
         localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
     });
 }
@@ -147,6 +144,16 @@ if (mobileMenuToggle && navMenu) {
         link.addEventListener('click', () => toggleMobileMenu(true));
     });
 
+    // Close menu when clicking on auth buttons (Login, Register, Logout)
+    document.querySelectorAll('.nav-auth-btn').forEach(link => {
+        link.addEventListener('click', () => toggleMobileMenu(true));
+    });
+
+    // Close menu when clicking on admin button
+    document.querySelectorAll('.nav-admin a').forEach(link => {
+        link.addEventListener('click', () => toggleMobileMenu(true));
+    });
+
     // Close menu on window resize (when switching to desktop)
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 1024 && navMenu.classList.contains('active')) {
@@ -161,6 +168,31 @@ if (mobileMenuToggle && navMenu) {
         }
     });
 }
+
+// ========================================
+// PAGE RELOAD ON SCREEN SIZE CHANGE
+// ========================================
+let resizeTimer;
+let lastWidth = window.innerWidth;
+let lastHeight = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    const currentWidth = window.innerWidth;
+    const currentHeight = window.innerHeight;
+    
+    // Check if size actually changed
+    if (currentWidth !== lastWidth || currentHeight !== lastHeight) {
+        // Clear existing timer
+        clearTimeout(resizeTimer);
+        
+        // Set new timer to reload after resize stops (debounce)
+        resizeTimer = setTimeout(() => {
+            lastWidth = currentWidth;
+            lastHeight = currentHeight;
+            window.location.reload();
+        }, 150); // 150ms delay to avoid excessive reloads
+    }
+});
 
 // ========================================
 // ACTIVE NAVIGATION LINK
