@@ -3863,12 +3863,18 @@ textarea:focus {
     background-clip: text;
     margin-bottom: 1rem;
     animation: fadeInDown 0.8s ease-out 0.2s both;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .dashboard-subtitle {
     font-size: 1.25rem;
     color: var(--text-light);
     animation: fadeInDown 0.8s ease-out 0.4s both;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 body.dark-mode .dashboard-subtitle {
@@ -3893,6 +3899,7 @@ body.dark-mode .dashboard-subtitle {
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.6s ease-out both;
+    min-width: 0;
 }
 
 .info-card::before {
@@ -3935,34 +3942,48 @@ body.dark-mode .dashboard-subtitle {
     color: var(--text-dark);
     margin-bottom: 1.5rem;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .info-stats {
     display: flex;
     justify-content: space-around;
     margin-bottom: 1.5rem;
-    gap: 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .info-stat-item {
     text-align: center;
     flex: 1;
+    min-width: 0;
+    padding: 0 0.25rem;
 }
 
 .info-stat-value {
     display: block;
-    font-size: 2rem;
+    font-size: clamp(1.25rem, 4vw, 2rem);
     font-weight: 700;
     background: linear-gradient(135deg, #5BC0EB 0%, #0ea5e9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 0.25rem;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
 }
 
 .info-stat-label {
     font-size: 0.85rem;
     color: var(--text-light);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .info-progress {
@@ -3990,6 +4011,8 @@ body.dark-mode .dashboard-subtitle {
     color: var(--text-light);
     text-align: center;
     display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Position List */
@@ -4005,6 +4028,7 @@ body.dark-mode .dashboard-subtitle {
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    min-width: 0;
 }
 
 .position-item:hover {
@@ -4017,6 +4041,10 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .position-meta {
@@ -4024,10 +4052,15 @@ body.dark-mode .dashboard-subtitle {
     justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .position-applicants {
     color: var(--text-light);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
 }
 
 .position-status {
@@ -4035,6 +4068,10 @@ body.dark-mode .dashboard-subtitle {
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
 }
 
 .status-active {
@@ -4063,6 +4100,11 @@ body.dark-mode .dashboard-subtitle {
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
+    min-width: 0;
 }
 
 .action-btn:hover {
@@ -4086,21 +4128,38 @@ body.dark-mode .dashboard-subtitle {
     border: 1px solid var(--border-color);
     margin-bottom: 3rem;
     animation: fadeInUp 0.6s ease-out 0.4s both;
+    min-width: 0;
 }
 
 .panel-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border-color);
+    gap: 1rem;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.panel-header .panel-title {
+    flex: 1;
+    text-align: center;
+}
+
+.panel-header .btn-sm {
+    flex-shrink: 0;
 }
 
 .panel-title {
     font-size: 1.75rem;
     font-weight: 600;
     color: var(--text-dark);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .btn-sm {
@@ -4123,6 +4182,8 @@ body.dark-mode .dashboard-subtitle {
     border-left: 4px solid var(--primary-color);
     transition: all 0.3s ease;
     animation: slideInRight 0.5s ease-out both;
+    align-items: flex-start;
+    min-width: 0;
 }
 
 .schedule-item:nth-child(1) { animation-delay: 0.1s; }
@@ -4140,10 +4201,13 @@ body.dark-mode .dashboard-subtitle {
     color: var(--primary-color);
     min-width: 80px;
     font-size: 0.95rem;
+    flex-shrink: 0;
+    text-align: left;
 }
 
 .schedule-details {
     flex: 1;
+    min-width: 0;
 }
 
 .schedule-details h3 {
@@ -4151,12 +4215,20 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .schedule-details p {
     color: var(--text-light);
     font-size: 0.9rem;
     margin-bottom: 0.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .schedule-status {
@@ -4165,6 +4237,10 @@ body.dark-mode .dashboard-subtitle {
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .status-scheduled {
@@ -4201,6 +4277,7 @@ body.dark-mode .dashboard-subtitle {
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.6s ease-out both;
+    min-width: 0;
 }
 
 .stat-card::after {
@@ -4249,12 +4326,18 @@ body.dark-mode .dashboard-subtitle {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 0.5rem;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .stat-label {
     font-size: 0.95rem;
     color: var(--text-light);
     font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 /* Dashboard Info Sections */
@@ -4301,6 +4384,7 @@ body.dark-mode .dashboard-subtitle {
     transition: all 0.4s ease;
     text-align: center;
     animation: fadeInUp 0.6s ease-out both;
+    min-width: 0;
 }
 
 .candidate-card:nth-child(1) { animation-delay: 0.1s; }
@@ -4335,12 +4419,20 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
+    text-align: center;
 }
 
 .candidate-role {
     color: var(--text-light);
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .candidate-status {
@@ -4355,6 +4447,13 @@ body.dark-mode .dashboard-subtitle {
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .status-interview {
@@ -4380,6 +4479,9 @@ body.dark-mode .dashboard-subtitle {
 .candidate-date {
     font-size: 0.8rem;
     color: var(--text-light);
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Metrics Grid */
@@ -4397,6 +4499,7 @@ body.dark-mode .dashboard-subtitle {
     border: 1px solid var(--border-color);
     transition: all 0.4s ease;
     animation: fadeInUp 0.6s ease-out both;
+    min-width: 0;
 }
 
 .metric-card:nth-child(1) { animation-delay: 0.1s; }
@@ -4414,12 +4517,15 @@ body.dark-mode .dashboard-subtitle {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    gap: 1rem;
 }
 
 .metric-header h3 {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-dark);
+    flex: 1;
+    min-width: 0;
 }
 
 .metric-trend {
@@ -4427,6 +4533,8 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 600;
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .trend-up {
@@ -4443,6 +4551,8 @@ body.dark-mode .dashboard-subtitle {
     background-clip: text;
     margin-bottom: 0.5rem;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .metric-description {
@@ -4450,6 +4560,10 @@ body.dark-mode .dashboard-subtitle {
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .metric-chart {
@@ -4544,7 +4658,7 @@ body.dark-mode .dashboard-subtitle {
     border: 1px solid var(--border-color);
     border-left: 4px solid var(--primary-color);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5rem;
     transition: all 0.3s ease;
     animation: slideInLeft 0.5s ease-out both;
@@ -4578,6 +4692,7 @@ body.dark-mode .dashboard-subtitle {
 
 .task-content {
     flex: 1;
+    min-width: 0;
 }
 
 .task-content h3 {
@@ -4585,12 +4700,20 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .task-content p {
     color: var(--text-light);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
 }
 
 .task-priority {
@@ -4601,12 +4724,18 @@ body.dark-mode .dashboard-subtitle {
     font-weight: 500;
     background: var(--bg-light);
     color: var(--text-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .task-time {
     font-size: 0.9rem;
     color: var(--text-light);
     flex-shrink: 0;
+    text-align: right;
+    white-space: nowrap;
 }
 
 /* Dark Mode Adjustments */
@@ -4763,7 +4892,6 @@ body.dark-mode .action-btn {
     }
     
     .info-card,
-    .schedule-panel,
     .stat-card {
         padding: 1.5rem;
     }
@@ -4774,5 +4902,171 @@ body.dark-mode .action-btn {
     
     .candidates-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .info-stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .info-stats {
+        gap: 0.5rem;
+    }
+    
+    .info-stat-item {
+        padding: 0 0.25rem;
+    }
+    
+    .schedule-item {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+    
+    .schedule-time {
+        min-width: auto;
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .schedule-details {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .schedule-details h3 {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .schedule-details p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .schedule-panel {
+        padding: 1.25rem;
+    }
+    
+    .task-item {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+    
+    .task-checkbox {
+        align-self: flex-start;
+    }
+    
+    .task-content {
+        width: 100%;
+        order: 1;
+    }
+    
+    .task-time {
+        order: 2;
+        align-self: flex-start;
+        text-align: left;
+        width: 100%;
+        margin-top: 0.5rem;
+        white-space: normal;
+    }
+    
+    .task-content h3 {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+    
+    .task-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .panel-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .panel-header .btn-sm {
+        align-self: center;
+    }
+}
+
+@media (max-width: 479px) {
+    .dashboard-container {
+        padding: 0 1rem;
+    }
+    
+    .schedule-item {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+    
+    .schedule-time {
+        font-size: 0.9rem;
+    }
+    
+    .schedule-details h3 {
+        font-size: 0.95rem;
+    }
+    
+    .schedule-details p {
+        font-size: 0.8rem;
+    }
+    
+    .schedule-panel {
+        padding: 1rem;
+    }
+    
+    .task-item {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+    
+    .task-content h3 {
+        font-size: 0.95rem;
+    }
+    
+    .task-content p {
+        font-size: 0.8rem;
+    }
+    
+    .info-stat-value {
+        font-size: 1.25rem;
+    }
+    
+    .info-stats {
+        gap: 0.25rem;
+    }
+    
+    .info-stat-item {
+        padding: 0 0.125rem;
+    }
+    
+    .info-stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .info-stat-value {
+        font-size: 1.1rem;
+    }
+    
+    .info-stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .info-stats {
+        gap: 0.125rem;
     }
 }
